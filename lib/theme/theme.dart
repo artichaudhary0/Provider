@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+bool isLight = true;
+
+
 class CustomThemeData {
   CustomThemeData._();
   static ThemeData lightTheme = ThemeData(
