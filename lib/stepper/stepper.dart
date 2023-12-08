@@ -48,23 +48,25 @@ class _StepperDemoState extends State<StepperDemo> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-            onPressed: () {
-              stepContinue();
-            },
-            child: const Text("Continue")),
+          onPressed: () {
+            stepContinue();
+          },
+          child: const Text("Continue"),
+        ),
         const SizedBox(
           width: 20,
         ),
         ElevatedButton(
-            onPressed: () {
-              stepCancel();
-            },
-            child: const Text("Cancel")),
+          onPressed: () {
+            stepCancel();
+          },
+          child: const Text("Cancel"),
+        ),
       ],
     );
   }
 
-  TextEditingController email_controller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +124,7 @@ class _StepperDemoState extends State<StepperDemo> {
                 child: Column(
               children: [
                 TextFormField(
-                  controller: email_controller,
+                  controller: emailController,
                   decoration: InputDecoration(
                     hintText: "Email",
                     enabledBorder: OutlineInputBorder(
@@ -131,7 +133,7 @@ class _StepperDemoState extends State<StepperDemo> {
                         borderRadius: BorderRadius.circular(24)),
                   ),
                   validator: (value) {
-                    if (email_controller.toString().isEmpty) {
+                    if (emailController.toString().isEmpty) {
                       return "cdtwyq";
                     }
                   },
