@@ -12,16 +12,20 @@ class CountProviderWidget extends StatelessWidget {
     print("Arti");
     return Scaffold(
       appBar: AppBar(
-        title: Text("Stateless Demo"),
+        title: const Text("Stateless Demo"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text("Count"),
-            Consumer<CountProvider>(builder: (BuildContext context, value, child) {
-              return Text(value.count.toString(),style: TextStyle(fontSize: 30),);
+            const Text("Count"),
+            Consumer<CountProvider>(
+                builder: (BuildContext context, value, child) {
+              return Text(
+                value.count.toString(),
+                style: TextStyle(fontSize: 30),
+              );
             }),
           ],
         ),
