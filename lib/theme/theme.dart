@@ -7,10 +7,12 @@ class CustomThemeData {
   CustomThemeData._();
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
+    scaffoldBackgroundColor: Colors.red.shade50,
     appBarTheme: AppBarTheme(centerTitle: true),
   );
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
+    scaffoldBackgroundColor: Colors.deepPurple,
     appBarTheme: AppBarTheme(centerTitle: true),
   );
 }
