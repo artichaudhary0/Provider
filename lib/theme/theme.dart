@@ -12,7 +12,7 @@ class CustomThemeData {
   );
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: Colors.deepPurple,
+    scaffoldBackgroundColor: Colors.black12,
     appBarTheme: AppBarTheme(centerTitle: true),
   );
 }

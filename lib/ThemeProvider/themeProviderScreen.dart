@@ -7,34 +7,17 @@ class ThemeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeChangeProvider = Provider.of<ThemeProvider>(context);
+    final themeChangeProvider =
+    Provider.of<ThemeProvider>(context, listen: false);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Theme"),
-      ),
-      body: Column(
-        children: [
-          RadioListTile<ThemeMode>(
-            title: Text("Light theme"),
-            value: ThemeMode.light,
-            groupValue: themeChangeProvider.themeChange,
-            onChanged: themeChangeProvider.setTheme,
-          )
-          ,
-          RadioListTile<ThemeMode>(
-            title: Text("Dark theme"),
-            value: ThemeMode.dark,
-            groupValue: themeChangeProvider.themeChange,
-            onChanged: themeChangeProvider.setTheme,
-          )
-          ,
-          RadioListTile<ThemeMode>(
-            title: Text("System theme"),
-            value: ThemeMode.system,
-            groupValue: themeChangeProvider.themeChange,
-            onChanged: themeChangeProvider.setTheme,
-          )
-        ],
+      body: Center(
+        child: GestureDetector(
+          onTap: () {
+            themeChangeProvider.toggleTheme();
+          },
+          child: Text("fiqwv"),
+        ),
       ),
     );
   }
