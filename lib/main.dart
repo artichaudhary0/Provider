@@ -2,11 +2,12 @@ import 'package:contact_diary/ThemeProvider/themeProviderScreen.dart';
 import 'package:contact_diary/cart/cartProvider.dart';
 import 'package:contact_diary/multi_provider/multiProvider.dart';
 import 'package:contact_diary/provider/count_provider.dart';
-import 'package:contact_diary/theme/theme.dart';
+import 'package:contact_diary/screens/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ThemeProvider/themeProvider.dart';
+import 'home_screen/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,6 @@ void main() async {
 
   final isDark = sharedPreferences.getBool("isDark") ?? false;
   print(isDark);
-
   runApp(
     MyApp(isDark: isDark),
   );
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: themeChangeProvider.currentTheme,
               darkTheme: ThemeData(brightness: Brightness.dark),
-              home: const ThemeScreen(),
+              home: const SplashScreen(),
             );
           },
         ));

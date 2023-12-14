@@ -23,7 +23,7 @@ class ThemeProvider with ChangeNotifier {
 
   toggleTheme()async {
     SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
+    await SharedPreferences.getInstance();
 
     if (_currentTheme == ThemeData.light()) {
       _currentTheme = ThemeData.dark();
