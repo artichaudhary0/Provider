@@ -22,16 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
     getValidate().whenComplete((){
       Timer(
-        Duration(seconds: 2),
+        const Duration(seconds: 2),
             () => email == null?Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => LoginScreen(),
+                builder: (context) => const LoginScreen(),
               ),
             ): Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeScreen(),
+                builder: (context) => const HomeScreen(),
               ),
             ),
       );
@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
