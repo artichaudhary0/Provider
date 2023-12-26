@@ -2,13 +2,16 @@ import 'package:contact_diary/ThemeProvider/themeProviderScreen.dart';
 import 'package:contact_diary/cart/cartProvider.dart';
 import 'package:contact_diary/multi_provider/multiProvider.dart';
 import 'package:contact_diary/provider/count_provider.dart';
+import 'package:contact_diary/screens/main_screen.dart';
 import 'package:contact_diary/screens/splash.dart';
 import 'package:contact_diary/url_launc_exam/url_lanuch_ex.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ThemeProvider/themeProvider.dart';
+import 'cart/cartScreen.dart';
 import 'home_screen/home_screen.dart';
+import 'multi_provider/multiScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +50,7 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               theme: themeChangeProvider.currentTheme,
               darkTheme: ThemeData(brightness: Brightness.dark),
-              home: const UrlDemo(),
+              home:  MainScreen(),
             );
           },
         ));
