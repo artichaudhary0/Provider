@@ -1,14 +1,9 @@
 import 'package:contact_diary/screens/login.dart';
 import 'package:flutter/material.dart';
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,21 +23,24 @@ class _MainScreenState extends State<MainScreen> {
                       alignment: Alignment.center,
                       children: [
                         Positioned(
+                          bottom: 100,
+                          child: Container(
+                            height: 100,
+                            width: double.infinity,
+                            color: Colors.black,
+                            child: Text(
+                              "dtjhsw",
+                              style: TextStyle(color: Colors.deepOrange),
+                            ),
+                          ),
+                        ),
+                        Positioned(
                           top: 0,
                           child: CircleAvatar(
                             radius: 60,
                             backgroundColor: Colors.white,
                           ),
                         ),
-                        Positioned(
-                          bottom: 10,
-                          child: Container(
-
-
-                            color: Colors.black,
-                            child: Text("dtjhsw",style: TextStyle(color: Colors.deepOrange),),
-                          ),
-                        )
                       ],
                     ),
                   );

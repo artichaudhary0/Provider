@@ -1,17 +1,16 @@
-import 'package:contact_diary/ThemeProvider/themeProviderScreen.dart';
 import 'package:contact_diary/cart/cartProvider.dart';
+import 'package:contact_diary/controller/platformController.dart';
 import 'package:contact_diary/multi_provider/multiProvider.dart';
 import 'package:contact_diary/provider/count_provider.dart';
 import 'package:contact_diary/screens/main_screen.dart';
-import 'package:contact_diary/screens/splash.dart';
-import 'package:contact_diary/url_launc_exam/url_lanuch_ex.dart';
+import 'package:contact_diary/view/android_home_page.dart';
+import 'package:contact_diary/view/ios_home_page.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ThemeProvider/themeProvider.dart';
-import 'cart/cartScreen.dart';
-import 'home_screen/home_screen.dart';
-import 'multi_provider/multiScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +20,9 @@ void main() async {
   final isDark = sharedPreferences.getBool("isDark") ?? false;
   print(isDark);
   runApp(
-    MyApp(isDark: isDark),
+    DevicePreview(
+      builder: (context) => MyApp(isDark: isDark),
+    ),
   );
 }
 
@@ -36,23 +37,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => MultiProviderSlider()),
-          ChangeNotifierProvider(create: (_) => CountProvider()),
-          ChangeNotifierProvider(create: (_) => CartProvider()),
-          ChangeNotifierProvider(create: (_) => ThemeProvider(isDark)),
-        ],
-        child: Builder(
-          builder: (BuildContext context) {
-            final themeChangeProvider = Provider.of<ThemeProvider>(context);
-            return MaterialApp(
-              title: 'Flutter Demo',
-              debugShowCheckedModeBanner: false,
-              theme: themeChangeProvider.currentTheme,
-              darkTheme: ThemeData(brightness: Brightness.dark),
-              home:  MainScreen(),
-            );
-          },
-        ));
+      providers: [
+        ChangeNotifierProvider(create: (_) => MultiProviderSlider()),
+        ChangeNotifierProvider(create: (_) => CountProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider(isDark)),
+        ChangeNotifierProvider(create: (_) => PlatformController()),
+      ],
+      child: Builder(
+        builder: (BuildContext context) {
+          final themeChangeProvider = Provider.of<ThemeProvider>(context);
+          return  Provider.of<PlatformController>(context).isAndroid?
+
+
+            MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: themeChangeProvider.currentTheme,
+            darkTheme: ThemeData(brightness: Brightness.dark),
+            home: AndroidHomePage(),
+          ) : CupertinoApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+
+            home: IosHomePage(),
+          )
+
+
+          ;
+        },
+      ),
+    );
   }
 }
