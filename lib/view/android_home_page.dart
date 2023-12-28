@@ -1,15 +1,25 @@
 import 'dart:io';
 import 'package:contact_diary/controller/platformController.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../screens/login.dart';
 
-class AndroidHomePage extends StatelessWidget {
+class AndroidHomePage extends StatefulWidget {
   AndroidHomePage({super.key});
 
-  bool isAndroid = Platform.isAndroid; // false
+  @override
+  State<AndroidHomePage> createState() => _AndroidHomePageState();
+}
+
+class _AndroidHomePageState extends State<AndroidHomePage> {
+  bool isAndroid = Platform.isAndroid;
+  // false
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
+
+  DateTime selectedDate = DateTime.now();
+  TimeOfDay selectedTime = TimeOfDay.now();
 
   @override
   Widget build(BuildContext context) {
@@ -111,58 +121,152 @@ class AndroidHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                scaffoldState.currentState!.showBottomSheet(
-                    enableDrag: true,
-                    (context) => Container(
-                          height: 200,
-                          color: Colors.amber,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const Text('BottomSheet'),
-                                ElevatedButton(
-                                  child: const Text('Close BottomSheet'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        ));
-              },
-              child: Text("Open sheet"),
+            /*
+
+             TimeOfDay class
+             CupertinoDatePicker widget (display time)
+             CupertinoAlertDialog widget
+            */
+            Text(
+              "${selectedTime.hour}h" + "  : ${selectedTime.minute}min",
+              style: TextStyle(fontSize: 30),
             ),
-            ElevatedButton(
-              onPressed: () {
-                showModalBottomSheet(
+            CupertinoButton.filled(
+              child: Text("press for time picker android"),
+              onPressed: () async {
+                final TimeOfDay? pickedTime = await showTimePicker(
+                  initialEntryMode: TimePickerEntryMode.dial,
+                  context: context, initialTime: selectedTime,
+                );
+
+                if(pickedTime!=null)
+                {
+                  setState(() {
+                    selectedTime = pickedTime;
+                  });
+                }
+
+
+              },
+            ),
+
+
+
+
+            Text("${selectedDate.year} / " +
+                "${selectedDate.month} / " +
+                "${selectedDate.day}"),
+            CupertinoButton(
+              child: Text("press for date picker"),
+              onPressed: () async {
+                var pickedDate = await showDatePicker(
+                  context: context,
+                  firstDate: DateTime(2022),
+                  lastDate: DateTime.now(),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    selectedDate = pickedDate;
+                  });
+                }
+
+                print(pickedDate);
+              },
+            ),
+            CupertinoButton.filled(
+              child: Text("press for date picker IOS"),
+              onPressed: () async {
+                var pickedDate = await showCupertinoModalPopup(
                     context: context,
-                    builder: (context) => Container(
-                          height: 200,
-                          color: Colors.amber,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                const Text('BottomSheet'),
-                                ElevatedButton(
-                                  child: const Text('Close BottomSheet'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        ));
+                    builder: (context) {
+                      return Container(
+                          height: 150,
+                          decoration: BoxDecoration(color: Colors.black12),
+                          child: CupertinoDatePicker(
+                              mode: CupertinoDatePickerMode.time,
+                              use24hFormat: true,
+                              onDateTimeChanged: (DateTime newSelectedDate) {
+                                setState(() {
+                                  selectedDate = newSelectedDate;
+                                });
+                              }));
+                    });
+
+                print(pickedDate);
               },
-              child: Text("Open model sheet"),
             ),
+            CupertinoContextMenu(
+              actions: [
+                Container(
+                  height: 50,
+                  color: Colors.red,
+                ),
+                Text("Hello"),
+                Text("Hello"),
+              ],
+              child: Text("arti"),
+            ),
+
+            Text("${selectedTime.hour}"),
+            Text("${selectedDate.year} / " +
+                "${selectedDate.month} / " +
+                "${selectedDate.day}"),
+            CupertinoButton(
+              child: Text("press for date picker"),
+              onPressed: () async {
+                var pickedDate = await showDatePicker(
+
+                  context: context,
+                  firstDate: DateTime(2022),
+                  lastDate: DateTime.now(),
+                );
+                if (pickedDate != null) {
+                  setState(() {
+                    selectedDate = pickedDate;
+                  });
+                }
+
+                print(pickedDate);
+              },
+            ),
+            CupertinoButton.filled(
+              child: Text("press for date picker IOS"),
+              onPressed: () async {
+                var pickedDate = await showCupertinoModalPopup(
+
+                    context: context, builder: (context){
+                  return Container(
+                      height: 150,
+                      decoration: BoxDecoration(color: Colors.black12),
+                      child: CupertinoDatePicker(
+                        mode: CupertinoDatePickerMode.time,
+                          use24hFormat: true,
+                          onDateTimeChanged: (DateTime newSelectedDate){
+
+                            setState(() {
+                              selectedDate = newSelectedDate;
+                            });
+
+                          }));
+                });
+
+
+                print(pickedDate);
+              },
+            ),
+
+
+            CupertinoContextMenu(
+              actions: [
+                Container(
+                  height: 50,
+                  color: Colors.red,
+                ),
+                Text("Hello"),
+                Text("Hello"),
+              ],
+              child: Text("arti"),
+            )
           ],
         ),
       ),

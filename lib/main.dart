@@ -1,6 +1,7 @@
 import 'package:contact_diary/cart/cartProvider.dart';
 import 'package:contact_diary/controller/platformController.dart';
 import 'package:contact_diary/multi_provider/multiProvider.dart';
+import 'package:contact_diary/pageview/pageView.dart';
 import 'package:contact_diary/provider/count_provider.dart';
 import 'package:contact_diary/screens/main_screen.dart';
 import 'package:contact_diary/view/android_home_page.dart';
@@ -55,7 +56,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: themeChangeProvider.currentTheme,
             darkTheme: ThemeData(brightness: Brightness.dark),
-            home: AndroidHomePage(),
+            home: PageViewDemo(),
           ) : CupertinoApp(
             title: 'Flutter Demo',
             debugShowCheckedModeBanner: false,
