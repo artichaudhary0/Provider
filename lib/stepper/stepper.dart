@@ -17,7 +17,9 @@ class _StepperDemoState extends State<StepperDemo> {
           context: context,
           builder: (BuildContext context) {
             return const AlertDialog(
-              title: Text("Successful"),
+              title: Text(
+                "Successful",
+              ),
             );
           });
     } else {
