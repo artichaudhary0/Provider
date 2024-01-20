@@ -47,8 +47,7 @@ class MyApp extends StatelessWidget {
               theme: themeChangeProvider.currentTheme,
               darkTheme: ThemeData(brightness: Brightness.dark),
               home: const ThemeScreen(),
-            );
-          },
-        ));
+
+
   }
 }
