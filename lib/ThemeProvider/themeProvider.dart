@@ -12,7 +12,7 @@ class ThemeProvider with ChangeNotifier {
   }
 
   ThemeData _currentTheme = ThemeData.light();
-  ThemeData get currentTheme => ThemeData();
+  ThemeData get currentTheme => _currentTheme;
 
   ThemeProvider(bool isDark){
     if(isDark){
